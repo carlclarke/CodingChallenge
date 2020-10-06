@@ -1,0 +1,73 @@
+﻿@model CodingChallenge.Web.Models.ImageConversionRequestModel
+
+@{
+    ViewData["Title"] = "ImageConversion";
+}
+
+<h1>Image Conversion</h1>
+
+<h4>Image Conversion Request</h4>
+<hr />
+<div class="row">
+    <div class="col-md-4">
+        <form asp-controller="Home" asp-action="ImageConversion" method="post">
+
+            <input asp-for="SourceImage.ImageName" type="hidden" />
+            <input asp-for="SourceImage.ImageHeightPx" type="hidden" />
+            <input asp-for="SourceImage.ImageWidthPx" type="hidden" />
+            <input asp-for="SourceImage.ImageFilePath" type="hidden" />
+            <input asp-for="SourceImage.ImageFormat" type="hidden" />
+
+            <div asp-validation-summary="ModelOnly" class="text-danger"></div>
+            <div class="form-group">
+                <label asp-for="ImageHeightPx" class="control-label"></label>
+                <input asp-for="ImageHeightPx" class="form-control" />
+                <span asp-validation-for="ImageHeightPx" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <label asp-for="ImageWidthPx" class="control-label"></label>
+                <input asp-for="ImageWidthPx" class="form-control" />
+                <span asp-validation-for="ImageWidthPx" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <label asp-for="ImageFormat" class="control-label"></label>
+                <input asp-for="ImageFormat" class="form-control" />
+                <span asp-validation-for="ImageFormat" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <label asp-for="Watermark" class="control-label"></label>
+                <input asp-for="Watermark" class="form-control" />
+                <span asp-validation-for="Watermark" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <label asp-for="BackgroundColour" class="control-label"></label>
+                <input asp-for="BackgroundColour" class="form-control" />
+                <span asp-validation-for="BackgroundColour" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <input type="submit" value="Submit" class="btn btn-primary" />
+            </div>
+        </form>
+    </div>
+</div>
+
+<div>
+    <a asp-action="List">Back to List</a>
+</div>
+
+
+@if (Model.ShowGETLink)
+{
+    <hr />
+    <h2>Converted File Link</h2>
+    <p>Click the link below to invoke a GET request for the converted file, the image will appear in a new tab/window</p>
+    <p>Alternatively right click the link and choose copy link address</p>
+
+    <a target="_blank" asp-controller="Home" asp-action="GetImage" asp-route-baseImageName="@Model.SourceImage.ImageName"
+       asp-route-heightPx="@Model.ImageHeightPx" asp-route-widthPx="@Model.ImageWidthPx"
+       asp-route-format="@Model.ImageFormat" asp-route-backgroundColour="@Model.BackgroundColour" asp-route-watermark="@Model.Watermark">Click for image</a>
+}
+
+
+
+

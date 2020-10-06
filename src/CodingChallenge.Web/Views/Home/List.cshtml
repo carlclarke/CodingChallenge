@@ -1,0 +1,54 @@
+﻿@model CodingChallenge.Web.Models.ImageListModel
+
+@{
+    ViewData["Title"] = "List";
+}
+
+<h1>Image List</h1>
+
+Displaying Images @Model.Start to @Model.End of @Model.TotalAvailable
+
+<table class="table">
+    <thead>
+        <tr>
+            <th>
+                Name
+            </th>
+            <th>
+                Format
+            </th>
+            <th>
+                Height
+            </th>
+            <th>
+                Width
+            </th>
+            <th>
+                Action(s)
+            </th>
+        </tr>
+    </thead>
+    <tbody>
+        @foreach (var item in Model.Items)
+        {
+            <tr>
+                <td>
+                    @Html.DisplayFor(modelItem => item.ImageName)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.ImageFormat)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.ImageHeightPx)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.ImageWidthPx)
+                </td>
+                <td>
+                    <a asp-controller="home" asp-action="ImageConversion" asp-route-baseImageName="@item.ImageName">Get this image</a> | 
+                    <a asp-controller="home" asp-action="Details" asp-route-baseImageName="@item.ImageName">Details</a>
+                </td>
+            </tr>
+        }
+    </tbody>
+</table>

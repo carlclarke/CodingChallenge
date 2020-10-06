@@ -1,0 +1,282 @@
+<?xml version="1.0"?>
+<doc>
+    <assembly>
+        <name>CodingChallenge.Web</name>
+    </assembly>
+    <members>
+        <member name="T:CodingChallenge.ApiControllers.ImagesController">
+            <summary>
+            Images reource controller
+            </summary>
+        </member>
+        <member name="M:CodingChallenge.ApiControllers.ImagesController.#ctor(CodingChallenge.Service.ImageService.IImageService,Microsoft.Extensions.Configuration.IConfiguration)">
+            <summary>
+            ctor with dependency injection
+            </summary>
+            
+            <param name="imageService"></param>
+            <param name="configuration"></param>
+        </member>
+        <member name="M:CodingChallenge.ApiControllers.ImagesController.Get(System.String,System.Int32,System.Int32,System.String,System.String,System.String)">
+            <summary>
+            Get a single image as specified by the request parameters
+            </summary>
+            <param name="baseImageName">the high resolution source image</param>
+            <param name="heightPx">the desired height in pixels</param>
+            <param name="widthPx">the desired width in pixels</param>
+            <param name="format">the returned image format e.g. jpg/png/</param>
+            <param name="backgroundColour">optional background colour for image specified as a hex RGB colour with 16 bits 
+            for each RGB component e.g black is 0xFFFFFF</param>
+            <param name="watermark">optional watermark string, the text will be centered in the image at 18pt size for simplicity</param>
+            <returns>an image with details as requested</returns>
+        </member>
+        <member name="M:CodingChallenge.ApiControllers.ImagesController.List(System.Int32,System.Int32)">
+            <summary>
+            Return a list of images available from the system
+            </summary>
+            <param name="skip">the start offset (for paging)</param>
+            <param name="take">the number of records to return</param>
+            <returns></returns>
+        </member>
+        <member name="T:CodingChallenge.Web.ApiModels.ImageListModel">
+            <summary>
+            
+            </summary>
+        </member>
+        <member name="P:CodingChallenge.Web.ApiModels.ImageListModel.Skip">
+            <summary>
+            Start offset
+            </summary>
+        </member>
+        <member name="P:CodingChallenge.Web.ApiModels.ImageListModel.Take">
+            <summary>
+            Records to return
+            </summary>
+        </member>
+        <member name="P:CodingChallenge.Web.ApiModels.ImageListModel.TotalAvailable">
+            <summary>
+            Total records available
+            </summary>
+        </member>
+        <member name="P:CodingChallenge.Web.ApiModels.ImageListModel.Items">
+            <summary>
+            List of ImageDetails objects for each image
+            </summary>
+        </member>
+        <member name="T:CodingChallenge.Web.Controllers.HomeController">
+            <summary>
+            Controller for home resource
+            </summary>
+        </member>
+        <member name="M:CodingChallenge.Web.Controllers.HomeController.#ctor(CodingChallenge.Service.ImageService.IImageService,Microsoft.Extensions.Configuration.IConfiguration)">
+            <summary>
+            ctor with DI
+            </summary>
+            <param name="imageService"></param>
+            <param name="configuration"></param>
+        </member>
+        <member name="M:CodingChallenge.Web.Controllers.HomeController.Index">
+            <summary>
+            GET / or /home or /home/index.htm etc
+            </summary>
+            <returns></returns>
+        </member>
+        <member name="M:CodingChallenge.Web.Controllers.HomeController.List(System.Int32,System.Int32)">
+            <summary>
+            GET /list
+            </summary>
+            <returns></returns>
+        </member>
+        <member name="M:CodingChallenge.Web.Controllers.HomeController.Details(System.String)">
+            <summary>
+            GET /imagedetails
+            </summary>
+            <returns></returns>
+        </member>
+        <member name="M:CodingChallenge.Web.Controllers.HomeController.ImageConversion(System.String)">
+            <summary>
+            GET /image-conversion
+            </summary>
+            <returns></returns>
+        </member>
+        <member name="M:CodingChallenge.Web.Controllers.HomeController.ImageConversion(CodingChallenge.Web.Models.ImageConversionRequestModel)">
+            <summary>
+            POST /image-conversion
+            </summary>
+            <returns></returns>
+        </member>
+        <member name="M:CodingChallenge.Web.Controllers.HomeController.GetImage(System.String,System.Int32,System.Int32,System.String,System.String,System.String)">
+            <summary>
+            GET /get-image 
+            </summary>
+            <returns>converted image data</returns>
+        </member>
+        <member name="T:CodingChallenge.Web.Models.ImageConversionRequestModel">
+            <summary>
+            
+            </summary>
+        </member>
+        <member name="T:CodingChallenge.Web.Models.ImageConversionRequestModel.Format">
+            <summary>
+            Suported formats
+            </summary>
+        </member>
+        <member name="F:CodingChallenge.Web.Models.ImageConversionRequestModel.Format.PNG">
+            <summary>
+            Portable Network Graphics
+            </summary>
+        </member>
+        <member name="F:CodingChallenge.Web.Models.ImageConversionRequestModel.Format.JPG">
+            <summary>
+            Joint Photographic Experts Group
+            </summary>
+        </member>
+        <member name="P:CodingChallenge.Web.Models.ImageConversionRequestModel.SourceImage">
+            <summary>
+            Source details
+            </summary>
+        </member>
+        <member name="P:CodingChallenge.Web.Models.ImageConversionRequestModel.ImageHeightPx">
+            <summary>
+            Requested image height in px
+            </summary>
+        </member>
+        <member name="P:CodingChallenge.Web.Models.ImageConversionRequestModel.ImageWidthPx">
+            <summary>
+            Requested image width in px
+            </summary>
+        </member>
+        <member name="P:CodingChallenge.Web.Models.ImageConversionRequestModel.ImageFormat">
+            <summary>
+            Requested image format
+            </summary>
+        </member>
+        <member name="P:CodingChallenge.Web.Models.ImageConversionRequestModel.Watermark">
+            <summary>
+            Requested watermark (optional)
+            </summary>
+        </member>
+        <member name="P:CodingChallenge.Web.Models.ImageConversionRequestModel.BackgroundColour">
+            <summary>
+            Requested background colour (optional)
+            </summary>
+        </member>
+        <member name="P:CodingChallenge.Web.Models.ImageConversionRequestModel.ShowGETLink">
+            <summary>
+            Flag to show that request has been posted and is reponse data
+            </summary>
+        </member>
+        <member name="T:CodingChallenge.Web.Models.ImageDetailsModel">
+            <summary>
+            
+            </summary>
+        </member>
+        <member name="P:CodingChallenge.Web.Models.ImageDetailsModel.ImageFilePath">
+            <summary>
+            Full path to image
+            </summary>
+        </member>
+        <member name="P:CodingChallenge.Web.Models.ImageDetailsModel.ImageName">
+            <summary>
+            Image (file) name
+            </summary>
+        </member>
+        <member name="P:CodingChallenge.Web.Models.ImageDetailsModel.ImageHeightPx">
+            <summary>
+            Image height in px
+            </summary>
+        </member>
+        <member name="P:CodingChallenge.Web.Models.ImageDetailsModel.ImageWidthPx">
+            <summary>
+            Image width in px
+            </summary>
+        </member>
+        <member name="P:CodingChallenge.Web.Models.ImageDetailsModel.ImageFormat">
+            <summary>
+            Image format
+            </summary>
+        </member>
+        <member name="T:CodingChallenge.Web.Models.ImageListModel">
+            <summary>
+            
+            </summary>
+        </member>
+        <member name="P:CodingChallenge.Web.Models.ImageListModel.Skip">
+            <summary>
+            Start offset
+            </summary>
+        </member>
+        <member name="P:CodingChallenge.Web.Models.ImageListModel.Take">
+            <summary>
+            Records to return
+            </summary>
+        </member>
+        <member name="P:CodingChallenge.Web.Models.ImageListModel.Start">
+            <summary>
+            UI/User friendly start record number
+            </summary>
+        </member>
+        <member name="P:CodingChallenge.Web.Models.ImageListModel.End">
+            <summary>
+            UI/User friendly end record number
+            </summary>
+        </member>
+        <member name="P:CodingChallenge.Web.Models.ImageListModel.TotalAvailable">
+            <summary>
+            Total records available
+            </summary>
+        </member>
+        <member name="P:CodingChallenge.Web.Models.ImageListModel.Items">
+            <summary>
+            List of ImageDetails objects for each image
+            </summary>
+        </member>
+        <member name="T:CodingChallenge.Program">
+            <summary>
+            Class to manage application entry/startup
+            </summary>
+        </member>
+        <member name="M:CodingChallenge.Program.Main(System.String[])">
+            <summary>
+            Progam entry
+            </summary>
+            <param name="args"></param>
+        </member>
+        <member name="M:CodingChallenge.Program.CreateHostBuilder(System.String[])">
+            <summary>
+            Create/setup host
+            </summary>
+            <param name="args"></param>
+            <returns></returns>
+        </member>
+        <member name="T:CodingChallenge.Startup">
+            <summary>
+            Startup configuration
+            </summary>
+        </member>
+        <member name="M:CodingChallenge.Startup.#ctor(Microsoft.Extensions.Configuration.IConfiguration)">
+            <summary>
+            ctor
+            </summary>
+            <param name="configuration"></param>
+        </member>
+        <member name="P:CodingChallenge.Startup.Configuration">
+            <summary>
+            get Configuration property
+            </summary>
+        </member>
+        <member name="M:CodingChallenge.Startup.ConfigureServices(Microsoft.Extensions.DependencyInjection.IServiceCollection)">
+            <summary>
+            This method gets called by the runtime. Use this method to add services to the container.
+            </summary>
+            <param name="services"></param>
+        </member>
+        <member name="M:CodingChallenge.Startup.Configure(Microsoft.AspNetCore.Builder.IApplicationBuilder,Microsoft.AspNetCore.Hosting.IWebHostEnvironment)">
+            <summary>
+            This method gets called by the runtime. Use this method to configure the HTTP request pipeline. 
+            </summary>
+            <param name="app"></param>
+            <param name="env"></param>
+        </member>
+    </members>
+</doc>
